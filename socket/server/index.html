@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <title>Bot</title>
+            <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+            <script src="/socket.io/socket.io.js"></script>
+        <style>
+          * { margin: 0; padding: 0; box-sizing: border-box; }
+          body { font: 13px Helvetica, Arial; height: 100vh; display: flex; justify-content: center;}
+          form { background: #000; padding: 3px; position: fixed; bottom: 0; width: 100%; }
+          form input { border: 0; padding: 10px; width: 90%; margin-right: 0.5%; }
+          form button { width: 9%; background: rgb(130, 224, 255); border: none; padding: 10px; }
+          #trades { list-style-type: none; margin: 0; padding: 0; overflow-y: auto; max-height: 800px; }
+          #trades li { padding: 5px 10px; }
+          #trades li:nth-child(odd) { background: #eee; }
+          .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            ;
+            font-size: 30px;
+          }
+          .content {
+            min-width: 800px
+          }
+          .trades {
+            margin-top: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            font-size: 20px;
+            max-width: 800px;
+          }
+          button {
+            width: 200px;
+            font-size: 30em;
+            margin: 10px;
+          }
+          .timestamp, #timestamp, .balance, #balance {
+            display: flex;
+            align-items: center;
+            padding: 25px;
+            font-size: 1em;
+          }
+          .informacao {
+            display: flex;
+            justify-content: space-between;
+            width: 100%;
+          }
+        </style>
+      </head>
+      <body>
+        <div class="container">
+          <div class="content">
+            <div class="timestamp">
+              <h2>TimeStamp: </h2>
+              <div id="timestamp"></div>
+  
+            </div>
+            <div class="balance">
+              <h2>Balance: </h2>
+              <div id="balance"></div>
+  
+            </div>
+            <!-- <div>
+              <span>Executar: </span>
+              <button id="executarsim">Sim</button>
+              <button id="executarnao">Não</button>
+  
+            </div>
+            <div>
+              <button id="rodar">Rodar</button>
+              <button id="parar">Parar</button>
+              <button id="limpar">Limpar</button>
+  
+            </div>
+            <div class="informacao">
+              <div>
+                Status: <span id="status" style="color: red">Parado</span>
+              </div>
+              <div>
+                Pode Executar: <span id="executar" style="color: red">Não</span>
+              </div>
+            </div>
+            <div class="trades">
+              <h2>Trades</h2>
+              <ul id="trades">
+              </ul>
+            </div> -->
+          </div>
+        </div>
+
+        <script>
+            $(function () {
+              var socket = io();
+
+              socket.on('rodando', function(msg){
+                $('#timestamp').text(msg);
+              });
+              socket.on('balance', function(msg){
+                $('#balance').text(msg);
+              });
+
+              // socket.emit('status');
+
+              // $('#rodar').click(function(e) {
+              //   e.preventDefault(); // 
+              //   socket.emit('rodar');
+              //   return false;
+              // });
+              // $('#parar').click(function(e) {
+              //   e.preventDefault(); // 
+              //   socket.emit('parar');
+              //   return false;
+              // });
+              // $('#limpar').click(function(e) {
+              //   e.preventDefault(); // 
+              //   $('ul').empty()
+              //   return false;
+              // });
+              
+              // $('#executarsim').click(function(e) {
+              //   e.preventDefault(); // 
+              //   socket.emit('executar', 'S');
+              //   // $('#executar').css("color", 'green');
+              //   // $('#executar').text("Sim");
+              //   return false;
+              // });
+              // $('#executarnao').click(function(e) {
+              //   e.preventDefault(); // 
+              //   socket.emit('executar', 'N');
+              //   // $('#executar').css("color", 'red');
+              //   // $('#executar').text("Não");
+              //   return false;
+              // });
+              // socket.on('config', function(config){
+              //   console.log(config)
+              //   $('#balance').text(config.balance);
+              //   $('#status').css("color", config.statusColor);
+              //   $('#status').text(config.status);
+              //   $('#executar').css("color", config.executarColor);
+              //   $('#executar').text(config.executar);
+              // });
+              
+              // socket.on('trades', function(msg){
+              //   $('#trades').append($('<li>').text(msg));
+              // });
+            });
+          </script>
+      </body>
+</html>
